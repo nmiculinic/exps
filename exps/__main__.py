@@ -5,6 +5,7 @@ import logging
 from io import StringIO
 from pprint import PrettyPrinter
 from typing import List
+from typing import NamedTuple
 
 import dash
 import dash_core_components as dcc
@@ -27,7 +28,6 @@ from sqlalchemy import MetaData
 from sqlalchemy import Table
 
 pp = PrettyPrinter()
-from typing import NamedTuple
 
 
 class Question(NamedTuple):
