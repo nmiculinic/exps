@@ -1,0 +1,8 @@
+questions:
+  - 'question 1'
+  - 'question 2'
+factors:
+  'extraversion':
+    - 1
+  'openness':
+    - 2
