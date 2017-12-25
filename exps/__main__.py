@@ -2,11 +2,6 @@
 import argparse
 import datetime
 import logging
-import operator as op
-import sys
-import time
-from collections import defaultdict
-from functools import partial
 from io import StringIO
 from pprint import PrettyPrinter
 from typing import List
@@ -14,10 +9,8 @@ from typing import List
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import numpy as np
 import pandas as pd
 import sqlalchemy as sa
-import sqlalchemy.sql
 import voluptuous
 import yaml
 from dash.dependencies import Event
@@ -27,16 +20,11 @@ from dash.dependencies import State
 from flask import redirect
 from flask import Response
 from fn import _
-from fn import F
 from functional import seq
 from sqlalchemy import Column
 from sqlalchemy import create_engine
-from sqlalchemy import Float
-from sqlalchemy import Integer
 from sqlalchemy import MetaData
-from sqlalchemy import String
 from sqlalchemy import Table
-from toolz import dicttoolz
 
 pp = PrettyPrinter()
 from typing import NamedTuple
