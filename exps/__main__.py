@@ -7,6 +7,7 @@ import sys
 import time
 from collections import defaultdict
 from functools import partial
+from io import StringIO
 from pprint import PrettyPrinter
 from typing import List
 
@@ -23,6 +24,8 @@ from dash.dependencies import Event
 from dash.dependencies import Input
 from dash.dependencies import Output
 from dash.dependencies import State
+from flask import redirect
+from flask import Response
 from fn import _
 from fn import F
 from functional import seq
@@ -135,7 +138,7 @@ if __name__ == "__main__":
                       *[Column(q.text, sa.Float) for q in cfg.questions])
     metadata.create_all(engine)
 
-    app = dash.Dash()
+    app = dash.Dash(url_base_pathname='/app')
     components = [
         question_components(i, x) for i, x in enumerate(cfg.questions)
     ]
@@ -143,6 +146,7 @@ if __name__ == "__main__":
     results = [
         html.Button("Submit!", id='submit', className='col-lg-12'),
         *[output_slider(i, f) for i, f in enumerate(cfg.factors)],
+        html.A("Download CSV data", href='download_csv')
     ]
     app.layout = html.Div(
         [
@@ -180,6 +184,24 @@ if __name__ == "__main__":
                 }
             }))
         return "whatever"
+
+    @app.server.route('/')
+    def red():
+        return redirect('/app')
+
+    @app.server.route('/download_csv', methods=['GET'])
+    def download_csv():
+        s = StringIO()
+        with engine.connect() as conn:
+            data = pd.read_sql_query(
+                sql=sa.text(f"SELECT * FROM {responses.name}"), con=conn)
+        data.to_csv(s)
+        return Response(
+            s.getvalue(),
+            mimetype="text/csv",
+            headers={
+                "Content-disposition": f"attachment; filename=data.csv"
+            })
 
     # app.css.config.serve_locally = True
     app.scripts.config.serve_locally = True
