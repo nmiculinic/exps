@@ -30,12 +30,28 @@ Buduci da su oni relativno rijetki i sam cin prikupljanja dojmova moze biti dugo
 
 \chapter{5 faktorski model}
 
+Pet faktorski model~\cite{mccrae1992introduction} je razvijen na temelju statistickog i leksickog pristpua. Statisticka pristup temelji se nad faktorskom analizom, podgranom statisike koje nalazi nezavise faktore u nekom modelu. Leksicki prisput temelji se na leksickoj hipotezi -- sve bitne osobine pojedinaca su ukodirana u nasem jeziku. Pet faktora su pronadeni u repliciranim istrazivanjima nad raznim jezicima, kulturama i oba spola. Osnovnih pet faktora su:
+
+\begin{itemize}
+    \item \textbf{Otvorenost}
+    \item \textbf{Savijesnost}
+    \item \textbf{Ekstraverzija}
+    \item \textbf{Ugodnost}
+    \item \textbf{Neuroticizam}
+\end{itemize}
+
 \chapter{Opis alata}
 Alat je implementiran kao sustav s pravilima. On rabi python3 s flask web serverom, YAML konfiguracijskom datotekom (volptous za validaciju istga), i podatke sprema u SQL bazu pomocu sqlalchemy biblioteke. Za vizualizaciju na web sucelju rabi dash biblioteku od Plotly; koja interno u sebi zapakirava React.js komponente. CSS layout je organiziran bibliotekom bootstrap4. Korisniku je omoguceno unos svojih odgovora na psiholoske cestice (pitanja), te slanje na server radi analize. Takoder je dostupna mogucnost skinuti sve dosad unesene odgovore u CSV formatu.
 
 \chapter{Upute}
 
-Sam alat je nadasve jednostavan. Potrebno ga je instalirati kao i svaki drugi python paket --> \verb|python3 setup.py install|  Potom se pokrece s \verb|python3 -m exps -h| da se prikazu sve moguce opcije programa. Ovdje ce se samo objasniti format konfiguracijske datoteke. One je formatirana kao yaml, i pogledajte primjer default.yml u izvornom direktoriju. Sadrzi popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridruzene. Svaku cesticu korisnik rangira od 1-5, te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost izmedu min i max bodova, (tj. bodovi se linarno skaliraju s intervala [min, max] na interval [0, 1]). Download CSV gumb skida sve dosad unesene podatke.
+Sam alat je nadasve jednostavan.
+Potrebno ga je instalirati kao i svaki drugi python paket --> \verb|python3 setup.py install|  Potom se pokrece s \verb|python3 -m exps -h| da se prikazu sve moguce opcije programa.
+Ovdje ce se samo objasniti format konfiguracijske datoteke.
+One je formatirana kao yaml, i pogledajte primjer default.yml u izvornom direktoriju.
+Sadrzi popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridruzene.
+Svaku cesticu korisnik rangira od 1-5, te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost izmedu min i max bodova, (tj. bodovi se linarno skaliraju s intervala [min, max] na interval [0, 1]).
+Download CSV gumb skida sve dosad unesene podatke.
 
 \verb|--db| je SQLalchemy connection string -- preporuca se rabiti sqlite s formatom \verb|sqlite:///<lokacija do file>|, npr. \verb|python3 -m exps --config default.yml --db sqlite:////home/user/Desktop/data.sqlite|
 
