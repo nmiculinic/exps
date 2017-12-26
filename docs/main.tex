@@ -1,8 +1,14 @@
 \documentclass[times, utf8, seminar]{fer}
 \usepackage{booktabs}
-
+\usepackage{epigraph}
 \usepackage{mathtools, amsmath,amsfonts,amssymb, amsthm}
 \usepackage{hyperref}
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
 \begin{document}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -11,19 +17,33 @@
 \author{Neven Miculinić}
 
 \maketitle
-
-\chapter*{Opis problema}
-
-Five-factor model je danas dominantni model psihologije licnosti.
-Optimal procurement in most industries involves forecasting of two
-quantities: prices of raw materials and customer's demand.  The aim of
-this work is to integrate forecasts into production planning models,
-with the aim of minimizing overall procurement, holding and production
-costs under demand satisfaction constraints.  The decision support
-system should allow the decision maker to integrate qualitative,
-unstructured information through a simple interface, for scenario
-selection and solution refinement
-
 \tableofcontents
+
+\chapter{Opis problema}
+
+\epigraph{Imagine for yourself a character, a model personality, whose example you determine to follow, in private as well as in public.
+}{\textit{Epictetus}}
+Ličnost jedan je od temeljnih pojmova psihologije koji se odnosi na neponovljiv, relativno čvrsto integriran, stabilan i kompleksan psihički sklop osobina, koji određuje karakteristično i dosljedno ponašanje individue.-\textit{Wikipedia}.
+Ona oblikuje nase ponasanje, razmisljanja i stavove; pomaze nam modelirati dogadaje kako na mikro, tako i na marko razini. Primjecuje se u nais mail adresama~\cite{mail-personality}, nasim sobama i radnim okolinama~\cite{gosling2002room}, te interpersonalnim odnosima.
+No opisati i kategorizirati osobnost nije lak zadatak, te on zalazi u domenu eksperta --- psihologa.
+Buduci da su oni relativno rijetki i sam cin prikupljanja dojmova moze biti dugotrajan i skupocijen postupak razvijeni su ekspertni sustavi --- psihometrijski testovi~\cite{cronbach1949essentials} koji nam pomazu doci do odgovora.
+
+\chapter{5 faktorski model}
+
+\chapter{Opis alata}
+Alat je implementiran kao sustav s pravilima. On rabi python3 s flask web serverom, YAML konfiguracijskom datotekom (volptous za validaciju istga), i podatke sprema u SQL bazu pomocu sqlalchemy biblioteke. Za vizualizaciju na web sucelju rabi dash biblioteku od Plotly; koja interno u sebi zapakirava React.js komponente. CSS layout je organiziran bibliotekom bootstrap4. Korisniku je omoguceno unos svojih odgovora na psiholoske cestice (pitanja), te slanje na server radi analize. Takoder je dostupna mogucnost skinuti sve dosad unesene odgovore u CSV formatu.
+
+\chapter{Upute}
+
+Sam alat je nadasve jednostavan. Potrebno ga je instalirati kao i svaki drugi python paket --> \verb|python3 setup.py install|  Potom se pokrece s \verb|python3 -m exps -h| da se prikazu sve moguce opcije programa. Ovdje ce se samo objasniti format konfiguracijske datoteke. One je formatirana kao yaml, i pogledajte primjer default.yml u izvornom direktoriju. Sadrzi popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridruzene. Svaku cesticu korisnik rangira od 1-5, te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost izmedu min i max bodova, (tj. bodovi se linarno skaliraju s intervala [min, max] na interval [0, 1]). Download CSV gumb skida sve dosad unesene podatke.
+
+\verb|--db| je SQLalchemy connection string -- preporuca se rabiti sqlite s formatom \verb|sqlite:///<lokacija do file>|, npr. \verb|python3 -m exps --config default.yml --db sqlite:////home/user/Desktop/data.sqlite|
+
+Pokrenuti ce se server na localhost i defaultnom portu te ce biti ispisane log poruke na stdout. Navigirajte svojim modernim web preglednikom na \verb|http://localhost:8050| te ce vam se otvoriti aplikacija.
+
+\chapter{Zakljucak}
+
+\bibliography{refs}
+\bibliographystyle{fer}
 
 \end{document}

@@ -109,10 +109,13 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=voluptuous.IsFile(), required=True)
+    parser.add_argument('--port', type=int, default=8050)
     parser.add_argument(
         '--db',
-        default='sqlite:///:memory',
-        help='db engine connection string')
+        default='sqlite://',
+        help=
+        'db engine connection string.\nSee http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls for more details.'
+    )
     args = parser.parse_args()
 
     with open(args.config, 'r') as f:
@@ -124,7 +127,7 @@ if __name__ == "__main__":
     responses = Table('responses', metadata,
                       Column('time', sa.DateTime),
                       *[Column(q.text, sa.Float) for q in cfg.questions])
-    metadata.create_all(engine)
+    print(metadata.create_all(engine))
 
     app = dash.Dash(url_base_pathname='/app')
     components = [
@@ -203,4 +206,4 @@ if __name__ == "__main__":
         "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
     })
 
-    app.run_server(debug=True)
+    app.run_server(port=args.port)
