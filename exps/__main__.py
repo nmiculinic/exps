@@ -40,6 +40,8 @@ class Factor:
     rev: List[bool]
 
     def __init__(self, fct, name):
+        if ',' in fct:
+            fct = [x.strip() for x in fct.split(',')]
         self.name = name
         self.question_ids = []
         self.rev = []
@@ -50,6 +52,9 @@ class Factor:
             else:
                 self.rev.append(False)
                 self.question_ids.append(int(fact) - 1)
+
+    def _asdict(self):
+        return dict(vars(self))
 
 
 schema = voluptuous.Schema({
