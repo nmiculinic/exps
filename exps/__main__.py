@@ -73,7 +73,7 @@ def question_components(i: int, q: Question):
     return html.Div(
         html.Div(
             [
-                html.H2(q.text, className='col-lg-12'),
+                html.H2(q.text, className='col-md-6'),
                 html.Div(
                     dcc.Slider(
                         min=1,
@@ -83,11 +83,11 @@ def question_components(i: int, q: Question):
                         id=f"q-{i}",
                         dots=True,
                     ),
-                    className='col-lg-12'),
+                    className='col-md-6'),
             ],
             className='row',
         ),
-        className='col-md-3')
+        className='col-lg-12')
 
 
 def output_slider(i: int, factor: Factor):
@@ -155,19 +155,31 @@ if __name__ == "__main__":
     print(metadata.create_all(engine))
 
     app = dash.Dash(url_base_pathname='/app')
-    components = [
-        question_components(i, x) for i, x in enumerate(cfg.questions)
-    ]
+    components = html.Div(
+        [question_components(i, x) for i, x in enumerate(cfg.questions)],
+        className='row')
 
-    results = [
-        html.Button("Submit!", id='submit', className='col-lg-12'),
-        *[output_slider(i, f) for i, f in enumerate(cfg.factors)],
-        html.A("Download CSV data", href='download_csv')
-    ]
+    results = html.Div(
+        [
+            html.Button("Submit!", id='submit', className='col-lg-12'),
+            *[output_slider(i, f) for i, f in enumerate(cfg.factors)],
+            html.A(
+                "Download CSV data",
+                href='download_csv',
+                className='col-lg-12')
+        ],
+        className='row')
     app.layout = html.Div(
         [
             html.Div(
                 [
+                    html.Div(
+                        html.H2("""
+Here are a number of characteristics that may or may not apply to you. For example, do you agree
+that you are someone who likes to spend time with others? Please write a number next to each
+statement to indicate the extent to which you agree or disagree with that statement. Leftmost (number 1) is strongly disagree, rightmost (number 5) is strongly agree.
+                    """),
+                        className='col-lg-12'),
                     html.Div(components, className='col-lg-6'),
                     html.Div(results, className='col-lg-6'),
                 ],
