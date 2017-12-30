@@ -57,25 +57,24 @@ Korisniku je omogućeno unos svojih odgovora na psihološke cestice (pitanja), t
 Također je dostupna mogućnost skinuti sve dosad unesene odgovore u CSV formatu.
 \chapter{Upute}
 
-Potrebno ga je instalirati kao i svaki drugi python paket --> \texttt{python3 setup.py install}  Potom se pokrece s \texttt{python3 -m exps -h} da se prikazu sve moguce opcije programa.
-Ovdje ce se samo objasniti format konfiguracijske datoteke. Za ostale detalje pokrenti program s \texttt{-h} opcijom
+Potrebno ga je instalirati kao i svaki drugi python paket --> \texttt{python3 setup.py install}  Potom se pokreće s \texttt{python3 -m exps -h} da se prikazu sve moguće opcije programa.
+Ovdje će se samo objasniti format konfiguracijske datoteke. Za ostale detalje pokretni program s \texttt{-h} opcijom
 One je formatirana kao , i pogledajte primjer default.yml u izvornom direktoriju.
 
-Sadrzi popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridruzene. Ukoliko je pitanje reversno korelirano s faktorom stavlja se slovo R na kraj.
+Sadrži popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridružene. Ako je pitanje reversno korelirano s faktorom stavlja se slovo R na kraj.
 
-Svaku cesticu korisnik rangira od 1(potpuno se ne slazem) do 5(potpuno se slazem), te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost izmedu min i max bodova, (tj. bodovi se linarno skaliraju s intervala [min, max] na interval [0, 1]).
+Svaku cesticu korisnik rangira od 1(potpuno se ne slažem) do 5(potpuno se slažem), te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost između min i max bodova, (tj. bodovi se linearno skaliraju s intervala [min, max] na interval [0, 1]).
 
 \verb|Download CSV| gumb skida sve dosad unesene podatke.
 
-\verb|--db| je SQLalchemy connection string -- preporuca se rabiti sqlite s formatom \texttt{sqlite:///<lokacija do file>}, npr. \texttt{python3 -m exps --config default.yml --db sqlite:////home/user/Desktop/data.sqlite}
+\verb|--db| je SQLAlchemy connection string -- preporuca se rabiti SQLite s formatom \texttt{sqlite:///}, npr. \texttt{python3 -m exps --config default.yml --db sqlite:////home/user/Desktop/data.sqlite}
 
-Pokrenuti ce se server na localhost i defaultnom portu (8050). Log poruke ce biti ispisane na stdout. Navigirajte na \verb|http://localhost:8050| otvara se web sucelje aplikacije. Na njemu se mogu unijeti svoji odgovori na pitanja te skinuti rezultati svih unosa.
+Pokrenuti će se server na localhost i defaultnom portu (8050). Log poruke će biti ispisane na stdout. Navigirajte na \verb|http://localhost:8050| otvara se web sučelje aplikacije. Na njemu se mogu unijeti svoji odgovori na pitanja te skinuti rezultati svih unosa.
 
 \chapter{Zaključak}
 
-Ekspertni sustav za odredivanje pet faktorskog modela licnosti ima siru primjenu nego u psihometriji i klinickom lijecenju. Danas se cesto primjenjuje prilikom tesova za posao radi sastavljanja balansiranih timova -- Otvoreni ljudi ce zeljeti mjenjati stvari, savijesni i zatvoreni ordazavati red, ugodni odrzadaju i potucu stabilnost i slogu tima te svaka osobina licnosti ima svoje prednost, mane i komlementarne osobine. Cak i neuroticnost moze biti korisna buduci da averzija prema riziku izbjegava pretjeranu optimisticnost i samozavaravanje.
-Ovakav sustav pomaze svima uljucenima brza, preciznije i standardizirano modeliranje raznolike ljudske licnosti.
-
+Ekspertni sustav za određivanje pet faktorskog modela ličnosti ima siru primjenu nego u psihometriji i kliničkom liječenju. Danas se često primjenjuje prilikom testova za posao radi sastavljanja balansiranih timova -- Otvoreni ljudi će željeti mijenjati stvari, savjesni i zatvoreni odražavati red, ugodni odrzadaju i potucu stabilnost i slogu tima te svaka osobina ličnosti ima svoje prednost, mane i komplementarne osobine. Cak i neurotičnost može biti korisna budući da averzija prema riziku izbjegava pretjeranu optimističnost i samozavaravanje.
+Ovakav sustav pomaze svima uključenima brza, preciznije i standardizirano modeliranje raznolike ljudske ličnosti.
 
 \bibliography{refs}
 \bibliographystyle{fer}

@@ -34,15 +34,28 @@ class Question(NamedTuple):
     text: str
 
 
-class Factor(NamedTuple):
+class Factor:
     question_ids: List[int]
     name: str
+    rev: List[bool]
+
+    def __init__(self, fct, name):
+        self.name = name
+        self.question_ids = []
+        self.rev = []
+        for fact in fct:
+            if 'R' == fact[-1]:
+                self.rev.append(True)
+                self.question_ids.append(int(fact[:-1]) - 1)
+            else:
+                self.rev.append(False)
+                self.question_ids.append(int(fact) - 1)
 
 
 schema = voluptuous.Schema({
     'questions': [lambda x: Question(text=x)],
     'factors':
-    lambda x: [Factor(question_ids=seq(v).map(_ - 1).to_list(), name=k) for k, v in x.items()],
+    lambda x: [Factor(v, name=k) for k, v in x.items()],
 })
 
 
@@ -94,11 +107,18 @@ def output_slider(i: int, factor: Factor):
 
 
 def link_factor(app: dash.Dash, i: int, factor: Factor):
+    def apply_reverse(tt):
+        a, r = tt
+        return 4 - a if r else a
+
     @app.callback(
         Output(f"f-{i}", 'value'),
-        inputs=[Input(f"q-{x}", 'value') for x in factor.question_ids])
+        inputs=[Input(f"q-{x}", 'value') for x in factor.question_ids],
+        events=[Event('submit', 'click')],
+    )
     def f(*args):
-        sol = seq(args).map(_ - 1).sum() / (len(args) * 4)
+        sol = seq(args).map(_ - 1).zip(factor.rev).map(apply_reverse).sum() / (
+            len(args) * 4)
         logging.getLogger('calc_factor').info(
             f"{pp.pformat({'args': args, 'factor': factor._asdict(), 'sol': sol})}"
         )
