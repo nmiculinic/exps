@@ -70,10 +70,15 @@ Svaku cesticu korisnik rangira od 1(potpuno se ne slažem) do 5(potpuno se slaž
 
 \verb|Download CSV| gumb skida sve dosad unesene podatke.
 
-\verb|--db| je SQLAlchemy connection string -- preporuca se rabiti SQLite s formatom \texttt{sqlite:///}, npr. \texttt{big-five --config default.yml --db sqlite:////home/user/Desktop/data.sqlite}
+\verb|--db| je SQLAlchemy connection string -- preporuca se rabiti SQLite s formatom \texttt{sqlite:///}, npr. \verb|big-five --config default.yml --db sqlite:///<path>|
 
 Pokrenuti će se server na localhost i defaultnom portu (8050). Log poruke će biti ispisane na stdout. Navigirajte na \verb|http://localhost:8050| otvara se web sučelje aplikacije. Na njemu se mogu unijeti svoji odgovori na pitanja te skinuti rezultati svih unosa.
 
+\begin{figure}[h]
+    \caption{Primjer web sucelja aplikacije}
+    \centering
+    \includegraphics[width=\textwidth]{app}
+\end{figure}
 \chapter{Zaključak}
 
 Ekspertni sustav za određivanje pet faktorskog modela ličnosti ima siru primjenu nego u psihometriji i kliničkom liječenju. Danas se često primjenjuje prilikom testova za posao radi sastavljanja balansiranih timova -- Otvoreni ljudi će željeti mijenjati stvari, savjesni i zatvoreni odražavati red, ugodni odrzadaju i potucu stabilnost i slogu tima te svaka osobina ličnosti ima svoje prednost, mane i komplementarne osobine. Cak i neurotičnost može biti korisna budući da averzija prema riziku izbjegava pretjeranu optimističnost i samozavaravanje.
