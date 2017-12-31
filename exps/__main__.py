@@ -130,7 +130,7 @@ def link_factor(app: dash.Dash, i: int, factor: Factor):
         return sol
 
 
-if __name__ == "__main__":
+def main():
     logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=voluptuous.IsFile(), required=True)
@@ -244,3 +244,7 @@ statement to indicate the extent to which you agree or disagree with that statem
     })
 
     app.run_server(port=args.port)
+
+
+if __name__ == "__main__":
+    main()

@@ -20,6 +20,12 @@ if __name__ == "__main__":
             'pyyaml',
             'numpy',
             'pandas',
+            'voluptuous',
         ],
         include_dirs=[],
+        entry_points={
+            'console_scripts': [
+                'big-five = exps:main',
+            ],
+        },
     )
