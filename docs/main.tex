@@ -58,15 +58,15 @@ Također je dostupna mogućnost skinuti sve dosad unesene odgovore u CSV formatu
 \chapter{Upute}
 
 Potrebno ga je instalirati kao i svaki drugi python paket --> \texttt{python3 setup.py install}.
-On instalirava u python bin direktorij \texttt{big-five} skriptu koja se nalazi u PATHu, te se moze rabiti za pokretanje programa.
+On instalirava u python bin direktorij \texttt{big-five} skriptu te se može rabiti za pokretanje programa.
 Potom se pokreće s \texttt{big-five -h} da se prikazu sve moguće opcije programa.
 Ovdje će se samo objasniti format konfiguracijske datoteke. Za ostale detalje pokretni program s \texttt{-h} opcijom.
 One je formatirana kao popis pitanja(čestica) te faktora. Pogledajte primjer example.yml u izvornom direktoriju.
 
-Sadrži popis putanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridružene. Ako je pitanje reversno korelirano s faktorom stavlja se slovo R na kraj.
+Sadrži popis pitanja (question) i popis faktora, gdje za svaki faktor listamo redni broj cestice(pitanja) koje su mu pridružene. Ako je pitanje reversno korelirano s faktorom stavlja se slovo R na kraj.
 BFI.yml je trazena konfiguracijska datoteka ovog projekta.
 
-Svaku cesticu korisnik rangira od 1(potpuno se ne slažem) do 5(potpuno se slažem), te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost između min i max bodova, (tj. bodovi se linearno skaliraju s intervala [min, max] na interval [0, 1]).
+Svaku česticu korisnik rangira od 1(potpuno se ne slažem) do 5(potpuno se slažem), te se na zaslonu ispise 0-1 skalirana vrijednost faktora kao linearni odnost između min i max bodova, (tj. bodovi se linearno skaliraju s intervala [min, max] na interval [0, 1]).
 
 \verb|Download CSV| gumb skida sve dosad unesene podatke.
 
@@ -75,7 +75,7 @@ Svaku cesticu korisnik rangira od 1(potpuno se ne slažem) do 5(potpuno se slaž
 Pokrenuti će se server na localhost i defaultnom portu (8050). Log poruke će biti ispisane na stdout. Navigirajte na \verb|http://localhost:8050| otvara se web sučelje aplikacije. Na njemu se mogu unijeti svoji odgovori na pitanja te skinuti rezultati svih unosa.
 
 \begin{figure}[h]
-    \caption{Primjer web sucelja aplikacije}
+    \caption{Primjer web sučelja aplikacije}
     \centering
     \includegraphics[width=\textwidth]{app}
 \end{figure}
