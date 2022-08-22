@@ -21,7 +21,7 @@ jsonschema==2.6.0
 jupyter-core==4.4.0
 MarkupSafe==1.0
 nbformat==4.4.0
-numpy==1.14.0rc1
+numpy==1.22.0
 pandas==0.21.1
 plotly==2.2.3
 PyFunctional==1.0.0
